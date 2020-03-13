@@ -24,7 +24,7 @@ git add .
 
 git commit -m 'message'
 
-推送到远程分支
+推送到远程分支并创建远程分支
 git push --set-upstream origin 分支名
 
 
