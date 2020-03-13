@@ -27,7 +27,9 @@ git commit -m 'message'
 推送到远程分支
 git push --set-upstream origin 分支名
 
-### 别的操作
+切换分支，会覆盖当前文档
+
+git checkout 分支名
 
 
 
