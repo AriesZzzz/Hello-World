@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+      <input type="file" name="smfile" id="file" />
+      <button id="btn">提交</button>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+    <script>
+      let btn = document.getElementById("btn")
+      let file = document.getElementById("file")
+      let data
+      
+      file.onchange = e => {
+        data = e.target.files[0]
+      }
+
+      btn.onclick = () => {
+        let formData = new FormData()
+        formData.append("smfile", data) // 转换成form-data格式
+        let instance = axios.create({
+          baseURL: "https://sm.ms/api/v2",
+          headers: { "Content-Type": "multipart/form-data" } // 设置请求头
+        })
+        instance
+          .post("/upload", formData)
+          .then(res => {
+            console.log(res)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      }
+
+      // var inputBox = document.getElementById("file")
+      // inputBox.addEventListener("change", function() {
+      //   var reader = new FileReader()
+      //   reader.readAsDataURL(inputBox.files[0]) //发起异步请求
+      //   reader.onload = function() {
+      //     let instance = axios.create({
+      //       baseURL: "https://sm.ms/api/v2",
+      //       headers: { "Content-Type": "multipart/form-data" }
+      //     })
+      //     instance.post('/upload', {
+      //       smfile: './lightapp.png',
+      //       format: 'json'
+      //     })
+      //     .then((res) => {
+      //         console.log(res);
+      //     })
+      //     .catch((err) => {
+      //         console.log(err);
+      //     })
+      //     console.log(this.result)
+      //   }
+      // })
+    </script>
+  </body>
+</html>
